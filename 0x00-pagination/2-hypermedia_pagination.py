@@ -43,7 +43,20 @@ class Server:
         data = self.dataset()  # load dataset
         start_index, end_index = self.index_range(page, page_size)
 
-        if start_index >= len(data) or start_index < 0:  # check out of range
+        if start_index >= len(data):  # check if strt index is out of range
             return []
 
-        return data[start_index:end_index]
+        return data[start_index:end_index]  # slice dataset to get page
+
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+        '''return a dict with following key value pairs'''
+        getpage = self.get_page(page, page_size)
+        data = self.dataset()
+
+        end_index = page * page_size
+        previous_page = page - 1 if page > 1 else None
+        next_page = page + 1 if end_index < len(data) else None
+
+        return {'page_size': len(getpage), 'page': page, 'data': getpage,
+                'next_page': next_page, 'prev_page': previous_page,
+                'total_pages': int(math.ceil(len(data) / page_size))}
