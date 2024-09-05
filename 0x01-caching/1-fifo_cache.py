@@ -23,7 +23,7 @@ class FIFOCache(BaseCaching):
                 first_key = next(iter(self.cache_data))  # get first key
                 del self.cache_data[first_key]
                 print(f"DISCARD: {first_key}")
-           
+
     def get(self, key):
         '''returns value associated with key'''
         if key is None or not key:
