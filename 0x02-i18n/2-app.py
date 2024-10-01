@@ -29,7 +29,7 @@ def get_locale():
     #user = getattr(g, 'user', None)
     #if user is Not None:
     #    return user.locale
-    return request.accept_languages.best_match(['en', 'fr'])
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
