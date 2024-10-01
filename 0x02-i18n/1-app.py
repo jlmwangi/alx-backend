@@ -8,6 +8,7 @@ from flask_babel import Babel
 app: Flask = Flask(__name__)
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
+babel = Babel(app)
 
 
 class Config:
@@ -15,15 +16,13 @@ class Config:
     LANGUAGES = ["en", "fr"]
 
 
-app.config.from_object(Config)
-
-babel = Babel(app)
+#  app.config.from_object(Config)
 
 
 @app.route('/')
 def home():
     '''return an index page'''
-    return render_template('templates/1-index.html')
+    return render_template('/1-index.html')
 
 
 if __name__ == "__main__":
