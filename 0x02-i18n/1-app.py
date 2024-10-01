@@ -17,8 +17,8 @@ class Config:
 
     def init():
         '''class to initialize babel_locale and timezone'''
-        self.BABEL_DEFAULT_LOCALE == 'en'
-        self.BABEL_DEFAULT_TIMEZONE == 'UTC'
+        self.BABEL_DEFAULT_LOCALE = 'en'
+        self.BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 app.config.from_object(Config)
