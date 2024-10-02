@@ -31,7 +31,8 @@ def home():
     '''return an index page'''
     home_title = _('home_title')
     home_header = _('home_header')
-    return render_template('3-index.html', home_title=home_title, home_header=home_header)
+    return render_template('3-index.html',
+                           home_title=home_title, home_header=home_header)
 
 
 if __name__ == "__main__":
