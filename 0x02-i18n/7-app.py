@@ -4,6 +4,7 @@
 
 from flask import Flask, render_template, g, request
 from flask_babel import Babel, gettext as _
+from pytz import timezone as tz, UnknownTimeZoneError
 
 app = Flask(__name__)
 
@@ -33,6 +34,21 @@ def get_locale():
         return best_match_locale
 
     return DEFAULT_LOCALE
+
+
+DEFAULT_TIMEZONE = 'UTC'
+@babel.timezoneselector
+def get_timezone():
+    '''get the users timezone'''
+    timezone_name = request.args.get('timezone')
+    if timezone_name:
+        try:
+            tzone = tz(timezone_name)
+            return tzone
+        except UnknownTimeZoneError:
+            return DEFAULT_TIMEZONE
+
+    return DEFAULT_TIMEZONE
 
 
 @app.route('/')
