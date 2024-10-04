@@ -35,7 +35,8 @@ def home():
     home_title = _('home_title')
     home_header = _('home_header')
     user = get_user()
-    logged_in_as = _('You are logged in as %(username)s') % {'username': user.get('name')}
+    logged_in_as = _('You are logged in as %(username)s.')\
+        % {'username': user.get('name')}
     not_logged_in = _('not_logged_in')
     return render_template('5-index.html',
                            home_title=home_title, home_header=home_header,
