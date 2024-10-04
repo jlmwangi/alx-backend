@@ -4,7 +4,6 @@
 
 from flask import Flask, render_template, g, request
 from flask_babel import Babel, gettext as _
-from typing, import Dict, Optional
 
 app = Flask(__name__)
 
@@ -22,7 +21,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale() -> Optional[str]:
+def get_locale():
     '''get_locale function to determine best match with supported languages'''
     locale = request.args.get('locale')  # check if locale in query parameters
     if locale and locale in app.config['LANGUAGES']:  # validate locale
@@ -31,7 +30,7 @@ def get_locale() -> Optional[str]:
 
 
 @app.route('/')
-def home() -> str:
+def home():
     '''return an index page'''
     home_title = _('home_title')
     home_header = _('home_header')
@@ -69,7 +68,7 @@ def get_user() -> dict:
 
 
 @app.before_request
-def before_request() -> None:
+def before_request():
     '''use getuser and set a user as global if any is found'''
     user = get_user()  # retriev user
     if user:
